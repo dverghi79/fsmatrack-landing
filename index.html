@@ -348,10 +348,8 @@
             </div>
           </div>
 
-          <h1 class="reveal reveal-delay-1" style="font-size:clamp(2.25rem,4.5vw,3.25rem);font-weight:800;letter-spacing:-0.03em;margin-bottom:1.5rem;color:var(--text-primary);">
-            Most distributors find out they're non-compliant <span class="gradient-text">during an FDA audit. You'll know before.</span>
-            <!-- PARAM HERO_HEADLINE_PAIN: The pain/problem. E.g. "Stop guessing why you lose deals." -->
-            <!-- PARAM HERO_HEADLINE_OUTCOME: The outcome/answer (accented). E.g. "Your competitors' reviews already have the answers." -->
+          <h1 class="reveal reveal-delay-1" id="hero-headline" data-default-headline="From FDA audit panic to always-ready compliance in 10 minutes a day." style="font-size:clamp(2.25rem,4.5vw,3.25rem);font-weight:800;letter-spacing:-0.03em;margin-bottom:1.5rem;color:var(--text-primary);">
+            From FDA audit panic to <span class="gradient-text">always-ready compliance</span> in 10 minutes a day.
           </h1>
 
           <div class="reveal reveal-delay-2" style="display:flex;flex-direction:column;gap:0.65rem;margin-bottom:2.5rem;max-width:600px;">
@@ -374,7 +372,7 @@
 
           <div class="reveal reveal-delay-3" style="display:flex;flex-wrap:wrap;gap:1rem;align-items:center;">
             <a href="#waitlist" class="btn-primary">
-              Get Your Free Compliance Check
+              Get Early Access to FSMATrack
               <!-- PARAM: Specific CTA. E.g. "See Your Real Job Margin Today" -->
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </a>
@@ -1078,7 +1076,7 @@
               <!-- PARAM: Optional form step 2 questions (label + select/input, styled with surface bg + border) -->
             </div>
             <button type="submit" id="submit-btn" class="btn-primary" style="width:100%;border:none;cursor:pointer;">
-              Get Your Free Compliance Check
+              Get Early Access to FSMATrack
               <!-- PARAM: Specific CTA button text -->
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </button>
@@ -1135,6 +1133,17 @@
   <script>
     /* ── Scroll reveal (IntersectionObserver) ── */
     document.addEventListener('DOMContentLoaded', function() {
+      /* DKI: Dynamic Keyword Insertion — override hero H1 from ?headline= URL param */
+      (function() {
+        var params = new URLSearchParams(window.location.search);
+        var hl = params.get('headline');
+        var h1 = document.getElementById('hero-headline');
+        if (hl && h1) {
+          h1.setAttribute('data-default-headline', h1.textContent.trim());
+          h1.textContent = decodeURIComponent(hl.replace(/\+/g, ' '));
+        }
+      })();
+
       var reveals = document.querySelectorAll('.reveal, .reveal-scale');
       if ('IntersectionObserver' in window) {
         var observer = new IntersectionObserver(function(entries) {
