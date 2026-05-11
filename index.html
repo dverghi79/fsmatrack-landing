@@ -349,7 +349,7 @@
             </div>
           </div>
 
-          <h1 class="reveal reveal-delay-1" id="hero-headline" data-default-headline="From FDA audit panic to always-ready compliance in 10 minutes a day." style="font-size:clamp(2.25rem,4.5vw,3.25rem);font-weight:800;letter-spacing:-0.03em;margin-bottom:1.5rem;color:var(--text-primary);">
+          <h1 class="reveal reveal-delay-1" id="hero-headline" style="font-size:clamp(2.25rem,4.5vw,3.25rem);font-weight:800;letter-spacing:-0.03em;margin-bottom:1.5rem;color:var(--text-primary);">
             From FDA audit panic to <span class="gradient-text">always-ready compliance</span> in 10 minutes a day.
           </h1>
 
@@ -1134,17 +1134,6 @@
   <script>
     /* ── Scroll reveal (IntersectionObserver) ── */
     document.addEventListener('DOMContentLoaded', function() {
-      /* DKI: Dynamic Keyword Insertion — override hero H1 from ?headline= URL param */
-      (function() {
-        var params = new URLSearchParams(window.location.search);
-        var hl = params.get('headline');
-        var h1 = document.getElementById('hero-headline');
-        if (hl && h1) {
-          h1.setAttribute('data-default-headline', h1.textContent.trim());
-          h1.textContent = decodeURIComponent(hl.replace(/\+/g, ' '));
-        }
-      })();
-
       var reveals = document.querySelectorAll('.reveal, .reveal-scale');
       if ('IntersectionObserver' in window) {
         var observer = new IntersectionObserver(function(entries) {
